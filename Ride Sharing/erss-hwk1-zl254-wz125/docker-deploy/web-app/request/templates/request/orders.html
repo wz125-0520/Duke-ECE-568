@@ -1,0 +1,60 @@
+{% extends "request/base.html" %}
+{% block content %}
+
+     <fieldset class="form-group">
+         <legend class="border-bottom md-4"> Ride Continuing</legend>
+     </fieldset>
+     <fieldset>      
+     <p> 
+       <table border="2" width="100%" align = "center">
+   <tr>
+     <td width="10%" align = "center">Edit</td>
+     <td width="30%" align = "center">Required Start Time</td>
+     <td width="20%" align = "center">Sharer Name</td>
+     <td width="20%" align = "center">Destination</td>
+     <td width="20%" align = "center">Total Passengers </td>
+     <td width="20%" align = "center">Share Status </td>
+   </tr>
+    Unconfirmed Orders
+    {% for post in posts %}<tr>
+
+    <td width="10%" align = "center"><a href ="{% url 'owner-orders-update' post.id %}">Edit</a ></td>
+    <td width="30%" align = "center">{{ post.start_time }}</td>
+    <td width="20%" align = "center">{{ post.sharer_name }}</td>
+    <td width="20%" align = "center">{{ post.des}}</td>
+    <td width="20%" align = "center">{{ post.max_pas_num}}</td>
+     <td width="20%" align = "center">{{ post.share_valid}}</td>
+       
+     </tr>         
+    {% endfor %}
+      </table>
+</fieldset>
+
+
+     <fieldset>      
+     <p> 
+       <table border="2" width="100%" align = "center">
+   <tr>
+     
+     <td width="30%" align = "center">Required Start Time</td>
+     <td width="20%" align = "center"> Total Passenger</td>
+     <td width="10%" align = "center">Destination</td>
+     <td width="20%" align = "center">Driver Name</td>
+     <td width="20%" align = "center">Driver Vehicle</td>
+     <td width="20%" align = "center">Share Status </td>
+   </tr>
+   Confirmed Orders
+    {% for unpost in unposts %}<tr>
+
+    <td width="30%" align = "center">{{ unpost.start_time }}</td>
+    <td width="20%" align = "center">{{ unpost.max_pas_num }}</td>
+    <td width="10%" align = "center">{{ unpost.des}}</td>
+     <td width="20%" align = "center">{{ unpost.driver_name}}</td>
+     <td width="20%" align = "center">{{ unpost.actual_vehicle}}</td>
+      <td width="20%" align = "center">{{ unpost.share_valid}}</td>
+     </tr>         
+    {% endfor %}
+
+  </table>
+</fieldset>
+{% endblock content %}

@@ -1,0 +1,23 @@
+
+2.1 
+In the beginning, if the current user chooses to become the ride owner or ride sharer and he initiates or joins the order. Then he acts as a driver, he will find that the order he has initiated or joined can be displayed and can be clicked to claim that order.
+
+To deal with that, we use the method "exclude" to filter the order that the current user has initiated and joined. In addition, the same situation happens when the user starts by creating the order as an owner and then shares his own order as a sharer.
+
+2.2
+The templates we used as the base has some choices (like select your roles and profile) that users can click. So, when we go to the first page of our web application, the malicious users can click on that and the page can jump without logging in. 
+
+We fixed this problem by adding the @function which required some conditions before executing the current function.
+
+2.3
+When we implemented the function for sharer to join in orders and cancel those orders, we used two pages to jump. When the sharer joined in a specific order and at the same time a driver confirmed that order, the sharer can update the current page. However, the current page also has the button “cancel” which can be clicked but the current order status changed. So, normally the sharer cannot edit this order anymore, but we give him that button. 
+
+We figured out that problem by deleting the page in which users can click the "cancel" button. If the current sharer clicks on the “join” button, the page will jump to displaying the current orders. And in unconfirmed order parts of that page, the sharer can cancel that order.
+
+
+2.4
+If the sharer fill the extremly large number of their party people, making the order impossible to be picked up by the normal driver whose vehicle's capacity is far less than the total passenger numbers. In this condition, this order will not be picked forever or be canceled . The only option is to start a new order request.This is still to be handled.
+
+2.5
+If a user creates order and filled in with the time that was passed, we will allow this situation occurred. 
+So, in future improvement, we need to take care of that.

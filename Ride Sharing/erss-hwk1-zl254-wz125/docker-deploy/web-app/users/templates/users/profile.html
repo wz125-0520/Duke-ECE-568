@@ -1,0 +1,22 @@
+{% extends "request/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+       
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      <!-- FORM HERE -->
+      Driver Information(Empty if you are not a driver yet)
+      {% for d in driver %}
+      <p class="article-content">Driver Name: {{d.driver_name}}</p>
+      <p class="article-content">Vehicle Type: {{d.Vehicle}}</p>
+      <p class="article-content">License:Number: {{d.Licenseplatenumber}}</p>
+      <p class="article-content">Capacity :{{d.Maximumpassengersnumber}}</p>
+      <p class="article-content">Special Request:{{d.s_request}}</p>
+      {% endfor %}
+    </div>
+{% endblock content %}

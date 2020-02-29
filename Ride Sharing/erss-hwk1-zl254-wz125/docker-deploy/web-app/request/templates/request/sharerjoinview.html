@@ -1,0 +1,30 @@
+ {% extends 'request/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+     <fieldset class="form-group">
+         <legend class="border-bottom md-4">Current Joinable Request</legend>
+     </fieldset>
+     <fieldset>       
+       <table border="2" width="100%" align = "center">
+	 <tr>
+	   <td width="10%" align = "center">Action</td>
+       <td width="30%" align = "center">Destination</td>
+       <td width="30%" align = "center">Required Start Time</td>
+       <td width="30%" align = "center">Owner Number</td>
+       <td width="30%" align = "center">Sharer Number</td>
+	 </tr>
+
+	 {% for order in posts %}<tr>
+    <td width="10%" align = "center"><a href ="{% url 'sharer-join' order.id %}">Join</a ></td>
+    <td width="30%" align = "center">{{ order.des }}</td>
+    <td width="30%" align = "center">{{ order.start_time }}</td>
+    <td width="30%" align = "center">{{ order.max_pas_num }}</td>
+    <td width="30%" align = "center">{{ order.sharer_pas_num }}</td>
+	
+	</tr>
+	{%endfor%}  
+       </table>
+     </fieldset>
+
+{% endblock content %}

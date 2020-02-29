@@ -1,0 +1,15 @@
+{% extends "request/base.html" %}
+{% block content %}
+    {% for post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.Vehicle }}</a>
+              <small class="text-muted">{{ post.Vehicle }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ post.Vehicle }}</a></h2>
+            <p class="article-content">{{ post.Vehicle }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

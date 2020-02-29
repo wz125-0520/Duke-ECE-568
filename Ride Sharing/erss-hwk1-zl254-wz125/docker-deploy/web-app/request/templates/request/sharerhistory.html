@@ -1,0 +1,61 @@
+
+{% extends "request/base.html" %}
+{% block content %}
+
+     <fieldset class="form-group">
+         <legend class="border-bottom md-4"> Ride Joined</legend>
+     </fieldset>
+     <fieldset>       
+       <table border="2" width="100%" align = "center">
+   <tr>
+     <td width="10%" align = "center">Action</td>
+     <td width="10%" align = "center">Destination</td>
+     <td width="30%" align = "center">Required Start Time</td>
+     <td width="30%" align = "center">Owner Party Number</td>
+       <td width="20%" align = "center">Driver Name</td>
+       <td width="10%" align = "center">Vehicle</td>
+      
+   </tr>
+  Unconfirmed Orders
+     {% for posts in posts %}<tr>
+        <td width="10%" align = "center"><a href ="{% url 'sharer-cancel' posts.id %}">Cancel</a ></td>
+    <td width="10%" align = "center">{{ posts.des }}</td>
+    <td width="30%" align = "center">{{ posts.start_time }}</td>
+    <td width="30%" align = "center">{{ posts.max_pas_num }}</td>
+  <td width="20%" align = "center">{{ posts.driver_name }}</td>
+    <td width="10%" align = "center">{{ posts.actual_vehicle }}</td>
+
+    
+    </tr>
+    {%endfor%}  
+       </table>
+     </fieldset>
+
+
+    
+     <fieldset>       
+       <table border="2" width="100%" align = "center">
+   <tr>
+   
+     <td width="10%" align = "center">Destination</td>
+     <td width="30%" align = "center">Required Start Time</td>
+     <td width="30%" align = "center">Owner Party Number</td>
+       <td width="20%" align = "center">Driver Name</td>
+       <td width="10%" align = "center">Vehicle</td>
+       
+   </tr>
+   confirmed Orders
+     {% for posts in unposts %}<tr>
+        
+    <td width="10%" align = "center">{{ posts.des }}</td>
+    <td width="30%" align = "center">{{ posts.start_time }}</td>
+    <td width="30%" align = "center">{{ posts.max_pas_num }}</td>
+  <td width="20%" align = "center">{{ posts.driver_name }}</td>
+    <td width="10%" align = "center">{{ posts.actual_vehicle }}</td>
+   
+    
+    </tr>
+    {%endfor%}  
+       </table>
+     </fieldset>
+{% endblock content %}

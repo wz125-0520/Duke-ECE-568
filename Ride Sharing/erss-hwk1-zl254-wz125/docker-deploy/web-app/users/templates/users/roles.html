@@ -1,0 +1,13 @@
+{% extends "request/base.html" %}
+{% block content %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2><a class="article-title" href="{% url 'driver-judge' %}">Driver</a></h2>
+            <p class="article-content">You can pick other passengers</p>
+	    <h2><a class="article-title" href="{% url 'owner-create' %}">Owner</a></h2>
+            <p class="article-content">You can start a ride to your destination</p>
+	    <h2><a class="article-title" href="{% url 'sharer-create' %}">Sharer</a></h2>
+            <p class="article-content">You can join other ride</p>
+	  </div>
+        </article>
+{% endblock content %}

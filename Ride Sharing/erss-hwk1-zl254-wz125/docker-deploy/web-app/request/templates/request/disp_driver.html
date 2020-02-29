@@ -1,0 +1,34 @@
+ {% extends 'request/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<p>
+     <fieldset class="form-group">
+         <legend class="border-bottom md-4">Current Ride Request</legend>
+     </fieldset>
+     <fieldset>       
+       <table border="2" width="100%" align = "center">
+	 <tr>
+	   <td width="10%" align = "center">Accept</td>
+       <td width="10%" align = "center">Destination</td>
+       <td width="30%" align = "center">Required Start Time</td>
+       <td width="20%" align = "center">Passengers Number</td>
+	 </tr>
+
+	 {% for order in posts %}<tr>
+    <td width="10%" align = "center"><a href ="{% url 'driver-claim' order.id %}">Claim</a ></td>
+    <td width="10%" align = "center">{{ order.des }}</td>
+    <td width="30%" align = "center">{{ order.start_time }}</td>
+    <td width="20%" align = "center">{{ order.total_num }}</td>
+	
+	</tr>
+	{%endfor%} 
+       </table>
+     </fieldset>
+     </p>
+   <p>
+     <button class = "btn btn-outline-secondary" type = "submit" >
+     <a href ="{% url 'driver-history'%}">View History</a >
+    </button>
+</p>
+{% endblock content %}

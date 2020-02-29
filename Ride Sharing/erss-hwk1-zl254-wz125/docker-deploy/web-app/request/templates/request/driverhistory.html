@@ -1,0 +1,33 @@
+ {% extends 'request/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+     <fieldset class="form-group">
+         <legend class="border-bottom md-4"> Ride Continuing</legend>
+     </fieldset>
+     <fieldset>       
+       <table border="2" width="100%" align = "center">
+	 <tr>
+	   <td width="10%" align = "center">Accept</td>
+	   <td width="10%" align = "center">Destination</td>
+	   <td width="30%" align = "center">Required Start Time</td>
+	   <td width="30%" align = "center">Owner Party Number</td>
+       <td width="20%" align = "center">Owner Name</td>
+       <td width="30%" align = "center">Sharer Party Number</td>
+       <td width="20%" align = "center">Sharer Name</td>
+	 </tr>
+
+	 {% for order in posts %}<tr>
+    <td width="10%" align = "center"><a href ="{% url 'driver-complete' order.id %}">Complete</a ></td>
+    <td width="10%" align = "center">{{ order.des }}</td>
+    <td width="30%" align = "center">{{ order.start_time }}</td>
+    <td width="30%" align = "center">{{ order.max_pas_num}}</td>
+    <td width="20%" align = "center">{{ order.owner.username }}</td>
+    <td width="30%" align = "center">{{ order.sharer_pas_num}}</td>
+    <td width="20%" align = "center">{{ order.sharer_name}}</td>
+	
+	</tr>
+	{%endfor%}  
+       </table>
+     </fieldset>
+{% endblock content %}

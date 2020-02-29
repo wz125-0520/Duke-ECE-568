@@ -1,0 +1,24 @@
+{% extends "request/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+Vehicle Type:<br>
+<input type="text" name="lastname" value="Mouse">
+<br>
+License Plate Number:<br>
+<input type="number" name="lastname">
+<br>
+Maximum Passengers Number<br>
+<input type="number" name="lastname">
+<br>
+<br>
+      {{ p_form|crispy }}
+<br>
+	<div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Update</button>
+    </div>
+</form> 
+{% endblock content %}
+
