@@ -1,0 +1,27 @@
+1. No limitation on server thread counts.
+
+For thread per request strategy, there will be no upper bound for thread counts we create, so if in extreme case, lots of different clients sending the request to us at the same time (and also use large delay range), the server may run out of resource and the performance start to degrade or even unavailable.
+
+2. Infinite waiting on server.
+
+Because the socket API we use (e.g. readLing) is blocking, so if a client connect to the server and shutdown once establish the connection, the server will keep waiting for the request infinitely.
+
+Solution: we set a timeout, the server will discard the request after waiting for 5 seconds but read nothing.
+
+3. Unreasonable waiting on client.
+
+Suppose in extremely case, the server performance degrade when too many requests come at the same time, the client may need to wait for a unreasonable long time to get the result(e.g. 5 mins) which is unacceptable in both experiment and real life.
+
+Solution: we also set a timeout, the client(testing infrastructure) will close the connection if can't get the response within 1 min.
+
+4. Bucket index out of range.
+
+The index of bucket which client send maybe out of range.
+
+Solution: we create a configuration file for both server & client, and specify the bucket size in that file, so that we can make sure the index client will be in range. Note that if you delete the configuration file, the client program still can run but will default use the minimum bucket size(32 in this case).
+
+5. Too much work for thread pool(exceed the size of waiting queue).
+
+Since the thread pool has the maximum number of threads, and a working queue to store the pending request, there maybe some case that the queue is full and we have to discard the incoming request(something like deny of service).
+
+Solution: we can't truly solve this problem(since we don't know how many clients), we can only try to solve this when there is only one client(can have multiple thread sending request but only one client program), we will specify the thread count of client in the configuration file, and server will set the queue size to (thread count + 20). Based on out experiment, this did solve the problem when there is only one client program.

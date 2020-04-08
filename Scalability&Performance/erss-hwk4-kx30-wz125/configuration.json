@@ -1,0 +1,17 @@
+{
+  "server": {
+    "preCreateThread": true,
+    "comment": "preCreateThread vs. thread per request"
+  },
+
+  "client": {
+    "port": 12345,
+    "host": "localhost",
+    "maxDelay": 3,
+    "comment": "1. replace the host with your VM(e.g. vcm-xxxx.vm.duke.edu); 2. delayBound, the maximum delay time"
+  },
+
+  "bucketSize": 128,
+  "threadCnt": 100,
+  "comment": "both server and client need to know bucketSize(bucket size on server) & threadCnt(client will open how many threads to send request), which can bring us some convenient to automatically testing"
+}
