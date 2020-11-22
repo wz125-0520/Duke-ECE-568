@@ -1,0 +1,42 @@
+{% extends 'ups/base.html' %}
+{% block content %}
+
+<br>
+<p>
+  Here is the information about your package
+</p>
+<p>
+  If the result table is empty, please check your tracking number and go back to enter it again
+</p>
+<br>
+
+
+<table border="1">
+    <!-- tr表示每一行， td表示每一个元素 -->
+    <thead>
+        <tr>
+            <!-- tr表示table row， 指一行 -->
+            <!-- th相当于是列表的头，告知这一列是什么元素 -->
+            <th>  Package Id  </th>
+            <th> Destination X </th>
+            <th> Destination Y </th>
+            <th> Package Status </th>
+            <th>  Description  </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for package in object_list %}
+        <tr>
+            <!-- td表示每一行里面的元素 -->
+            <td>{{ package.packageid }}</td>
+            <td>{{ package.destx }}</td>
+            <td>{{ package.desty }}</td>
+            <td>{{ package.packagestatus }}</td>
+            <td>{{ package.description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

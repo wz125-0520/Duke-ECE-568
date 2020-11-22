@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  db:
+      image: postgres
+  ups:
+      build: ./ups
+      user: nobody
+      command: bash -c "python3 ./main.py"
+      volumes:
+        - ./ups:/code
+      expose:
+        - "8000"
+      depends_on:
+        - db

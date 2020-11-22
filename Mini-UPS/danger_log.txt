@@ -1,0 +1,21 @@
+1. As the requirement described, If the package is not yet out for delivery, the users can redirect it to a different address. However, we found there are some circumstances where at the time of clicking the change button, the package status is still in the warehouse. While when the user enters the new destination and clicks the submit button, the package status has already changed to out for delivery. So, it would be invalid to change the destination anymore.
+
+Solution: We added another check when the user clicked the submit button to make sure the package is not yet out for delivery. 
+
+2. We found that when we purchase more times at Amazon which means our UPS would send messages to or receive from World Simulator back and forth in a short of time, our UPS backend would unexpectedly receive the UResponse filled in the optional finished field. Then the world will close its connection with our UPS and the process will exit.
+
+Solution: After we found the world closed its connection, we will reconnect to it by sending UConnect message and resume our implementation. However, this may lead to some other errors as described in 3 & 4.
+
+3. If the last message before we disconnect is that the world sent us a message, the world does not normally receive the acknowledgment from us. After we reconnect with the world, we find that the world resends the message again, so this will cause us to receive two duplicate messages.
+
+Eg. We received two same UDeliveryMade Commands from the world. 
+Solution: We selected the package status of this specific packageid and check if it is already delivered. If it is, we would not send emails to inform the user and not send Package Arrived message to amazon.
+
+4. If we did not successfully send the commands to the world due to the connection close, the current shipment will be stuck at the current status.
+
+Solution: We add an ack confirmation mechanism when we send messages to world. If we did not receive the ack from world after a while, we must resend the missed message again. 
+
+5. We have errors in sending confirmation emails to the users who did not register in our UPS website before when the package has arrived.
+
+Solution: We searched our user database, if we find the username does not exist, we would skip the function of sending a confirmation email.
+

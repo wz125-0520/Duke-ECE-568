@@ -1,0 +1,14 @@
+1. Package Arrived Information
+Our UPS will send the package arrived message to Amazon, so that amazon can display the order finished status to clients.
+
+2. Send Emails
+Once the package has been delivered, we would inform the user by sending an email.
+
+3. Add Photo in Profile and Modify Personal Information
+When the users log in, they can add a photo in their profile and modify some information like the address information.
+
+4. Reset the Password
+If user forgets his password, he can reset is through our website.
+
+5. Survey Link
+Once the current order is delivered, the user can click to fill in their satisfaction questionnaire. We would store this survey in our database.
